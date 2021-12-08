@@ -1,0 +1,82 @@
+<div class="container-fluid text-center mb-4">
+    <div class="avatar avatar-140 rounded-circle mx-auto shadow">
+        <div class="">
+            <img [src]="authUserDetails?.profilePix" alt="" style="background-size: cover; background-repeat: no-repeat; background-position: center center; height: 100%; width: 100%; position: absolute; z-index: 0; top: 0; left: 0;">
+        </div>
+    </div>
+</div>
+
+<div class="container mb-4 text-center text-white">
+    <h6 class="mb-1" style="color: #fff;">{{authUserDetails?.first_name}} {{authUserDetails?.last_name}}</h6>
+    <p>{{ authUserDetails?.username }}</p>
+    <p class="mb-1">{{ authUserDetails?.email }}</p>
+    <p>{{ authUserWalletDetails?.phone_number }}</p>
+</div>
+
+<div class="main-container">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">User Information</h6>
+            </div>
+            <div class="card-body px-0 pt-0">
+                <div class="list-group list-group-flush border-top border-color">
+                    <a class="list-group-item list-group-item-action border-color">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-50 bg-default-light text-default rounded">
+                                    <span class="material-icons">language</span>
+                                </div>
+                            </div>
+                            <div class="col align-self-center pl-0">
+                                <h6 class="mb-1">Wallet No</h6>
+                                <p class="text-secondary">{{ authUserWalletDetails?.wallet_number }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action border-color">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-50 bg-default-light text-default rounded">
+                                    <span class="material-icons">language</span>
+                                </div>
+                            </div>
+                            <div class="col align-self-center pl-0">
+                                <h6 class="mb-1">Wallet No</h6>
+                                <p class="text-secondary">{{ authUserWalletDetails?.bvn }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action border-color">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-50 bg-default-light text-default rounded">
+                                    <span class="material-icons">language</span>
+                                </div>
+                            </div>
+                            <div class="col align-self-center pl-0">
+                                <h6 class="mb-1">Customer ID</h6>
+                                <p class="text-secondary">{{ authUserWalletDetails?.customer_id }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="list-group-item list-group-item-action border-color">
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="avatar avatar-50 bg-default-light text-default rounded">
+                                    <span class="material-icons">lock_open</span>
+                                </div>
+                            </div>
+                            <div class="col align-self-center pl-0">
+                                <h6 class="mb-1">Merchant ID</h6>
+                                <p class="text-secondary">{{ authUserWalletDetails?.merchant_id }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

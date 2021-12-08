@@ -1,0 +1,237 @@
+<div class="main-container">
+    <div class="container">
+        <h5 class="text-center mt-3 mb-2">
+            Mobile Top-up !!!
+        </h5>
+        <p *ngIf="selectAirtimeOrData" class="text-center mb-4">Select Network Carrier</p>
+
+        <form [formGroup]="typeSelectForm">
+            <div class="col-md-12" style="text-align: center; margin-bottom: 7px;" *ngIf="selectAirtimeOrData">
+                <nz-radio-group [(ngModel)]="selectedTo" formControlName="typeSelect" (ngModelChange)="selectToBuy()">
+                    <label nz-radio nzValue="airtime">Airtime Recharge</label>
+                    <label nz-radio nzValue="data">Buy Data</label>
+                </nz-radio-group>
+            </div>
+        </form>
+
+        <div class="row text-center mt-3 mb-3" *ngIf="airtimeSelect">
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork('etisalat')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #1A1A1A; height: 80px; width: 80px;"><img src="assets/img/etisalat.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork('mtn')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #FFC423; height: 80px; width: 80px;"><img src="assets/img/mtn.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork('airtel')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #F5090A; height: 80px; width: 80px;"><img src="assets/img/airtel.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork('glo')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #079907; height: 80px; width: 80px;"><img src="assets/img/glo.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-3 mb-3" *ngIf="dataSelect">
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork2('airtel')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #F5090A; height: 80px; width: 80px;"><img src="assets/img/airtel.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork2('etisalat')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #1A1A1A; height: 80px; width: 80px;"><img src="assets/img/etisalat.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork2('mtn')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #FFC423; height: 80px; width: 80px;"><img src="assets/img/mtn.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar text-default mt-3 mb-3" (click)="onSelectNetwork2('glo')">
+                            <button class="btn btn-default btn-60 rounded-circle" style="background-color: #079907; height: 80px; width: 80px;"><img src="assets/img/glo.png" alt="" style="width: 55px; height: 55px;"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- For Wallet Funding -->
+        <form [formGroup]="airtimeForm">
+            <div class="card mb-4 mt-4" *ngIf="airtimeFormPage">
+                <div class="card-header">
+                    <h6 class="subtitle mb-0">
+                        <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">sim_card</span></div>
+                        Buy Airtime
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Amount</label>
+                                        <input type="number" formControlName="amount" nz-input placeholder="Enter Amount" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="text" formControlName="phoneNumber" nz-input placeholder="Enter Phone Number" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button nz-button nzBlock nzType="primary" [disabled]="airtimeForm.value.phoneNumber === ''" (click)="buyAirtimeCheck()" [nzLoading]="isLoadingBtn" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Buy Airtime</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- For Wallet Funding -->
+        <form [formGroup]="dataForm">
+            <div class="card mb-4 mt-4" *ngIf="dataFormPage">
+                <div class="card-header">
+                    <h6 class="subtitle mb-0">
+                        <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">sim_card</span></div>
+                        Buy Data
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Amount</label>
+                                        <input type="number" formControlName="amount" nz-input placeholder="Enter Amount" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="text" formControlName="phoneNumber" nz-input placeholder="Enter Phone Number" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button nz-button nzBlock nzType="primary" [disabled]="airtimeForm.value.phoneNumber === ''" (click)="buyAirtimeCheck()" [nzLoading]="isLoadingBtn" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Buy Airtime</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Success Message -->
+        <div class="row h-100" *ngIf="successMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-success-light text-success rounded-circle mb-3">
+                    <i class="material-icons display-4">check_circle</i>
+                </div>
+                <h2>Airtime TopUp !!</h2>
+                <h6 class="text-secondary mb-3">{{ this.airtimeForm.value.phoneNumber }} as been credited successfully</h6>
+                <!-- <p class="text-secondary"><b>Trx Reference:</b>
+                <badge class="badge-success ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ successReference }}</badge>
+            </p> -->
+                <a href="app/airtime"><button class="btn btn-success">Make another transaction</button></a>
+            </div>
+        </div>
+
+        <!-- error Message -->
+        <div class="row h-100" *ngIf="errorMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-danger-light text-danger rounded-circle mb-3">
+                    <i class="material-icons display-4">close</i>
+                </div>
+                <h2>Failed !!</h2>
+                <h6 class="text-secondary mb-3">Message:
+                    <badge class="badge-danger ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ errorToDisplay }}</badge>
+                </h6>
+                <a href="app/airtime"><button class="btn btn-primary" >Try Again</button></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!-- Footer -->
+<app-footer></app-footer>
+
+
+<!--  Transaction Modal-->
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Enter Transaction Password</ng-template>
+
+    <ng-template #modalContent>
+        <form [formGroup]="airtimeForm">
+            <div class="modal-content">
+                <div class="col-12">
+                    <div class="form-group float-label active">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <input type="password" formControlName="transactionPassword" class="form-control mt-4 mb-2" placeholder="Enter Your Password">
+                            </div>
+                        </div>
+                        <label class="form-control-label mt-4 mb-2">Transaction Password</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+        <button nz-button nzType="primary" (click)="airtimeSubmit()" [nzLoading]="isConfirmLoading">Submit</button>
+    </ng-template>
+</nz-modal>

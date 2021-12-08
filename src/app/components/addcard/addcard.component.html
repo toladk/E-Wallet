@@ -1,0 +1,167 @@
+<div class="main-container">
+    <div class="container">
+        <h5 class="text-center mt-3 mb-4">
+            Add Your Card !!!
+        </h5>
+        <form [formGroup]="addCardForm">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="subtitle mb-0">
+                        <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">credit_card</span></div>
+                        Add Card
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Card Number</label>
+                                        <input type="text" formControlName="pan" nz-input placeholder="Enter Card Number" (ngModelChange)="gettingType()" />
+                                        <p class="form-text text-secondary text-right" style="font-weight: 600; color: orangered !important;">{{ cardTypeText }}</p>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Card Holders Name</label>
+                                        <input type="text" formControlName="nameOnCard" nz-input placeholder="Enter Name On Card" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label" style="font-weight: 600;">Expiry Month</label>
+                                        <nz-select style="width: 100%;" formControlName="month" nzShowSearch nzAllowClear nzPlaceHolder="Select Month">
+                                            <nz-option *ngFor="let list of MonthArray" [nzValue]="list.value" [nzLabel]="list.name"></nz-option>
+                                        </nz-select>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label" style="font-weight: 600;">Expiry Year</label>
+                                        <nz-select style="width: 100%;" formControlName="year" nzShowSearch nzAllowClear nzPlaceHolder="Select Month">
+                                            <nz-option *ngFor="let list of YearArray" [nzValue]="list.value" [nzLabel]="list.name"></nz-option>
+                                        </nz-select>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Card Holders Name</label>
+                                        <input type="text" maxlength="3" formControlName="cvv" nz-input placeholder="Enter CVV" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Card Pin</label>
+                                        <input type="text" maxlength="4" formControlName="pin" nz-input placeholder="Enter Card Pin" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-11">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label" style="font-weight: 600;">Bank</label>
+                                        <nz-select style="width: 100%;" formControlName="bankName" nzShowSearch nzAllowClear nzPlaceHolder="Select Month">
+                                            <nz-option *ngFor="let list of bankList" [nzValue]="list.bankName" [nzLabel]="list.bankName"></nz-option>
+                                        </nz-select>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button nz-button nzBlock nzType="primary" [disabled]="addCardForm.value.bankName === ''" (click)="addcard()" [nzLoading]="isLoadingBtn" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Add Card</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- footer-->
+<app-footer></app-footer>
+
+
+<!--  Token Modal-->
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Enter OTP</ng-template>
+
+    <form [formGroup]="addCardOtpForm">
+        <ng-template #modalContent>
+            <!-- <form [formGroup]="addCardForm"> -->
+            <div class="modal-content" style="border: 0px;">
+                <div class="col-12">
+                    <div class="form-group float-label active">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <label for="exampleFormControlInput1">Otp</label>
+                                <input type="text" formControlName="otp" maxlength="7" class="form-control is-valid text-center" placeholder="Enter Otp">
+                                <p class="form-text valid-feedback">Please enter otp sent to your phone</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </form> -->
+        </ng-template>
+
+        <ng-template #modalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+            <button nz-button nzType="primary" (click)="submitCardOtp()" [nzLoading]="isConfirmLoading">Submit</button>
+        </ng-template>
+    </form>
+</nz-modal>
+
+<!--  Password Modal-->
+<nz-modal [(nzVisible)]="passVisible" nzTitle="Enter Password" (nzOnCancel)="handlePassCancel()">
+
+    <ng-container *nzModalContent>
+        <form [formGroup]="addCardOtpForm">
+            <div class="col-12">
+                <div class="form-group float-label active">
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <input type="password" formControlName="transactionPassword" class="form-control mt-4 mb-2" placeholder="Enter token">
+                        </div>
+                    </div>
+                    <label class="form-control-label mt-4 mb-2">Password</label>
+                </div>
+            </div>
+        </form>
+    </ng-container>
+
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handleTokenCancel()">Cancel</button>
+        <button nz-button nzType="primary" [nzLoading]="isConfirmLoadingPass" (click)="submitTransPassword()">Submit</button>
+    </div>
+</nz-modal>

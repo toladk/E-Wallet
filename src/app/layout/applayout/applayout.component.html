@@ -1,0 +1,125 @@
+<!-- menu main -->
+<div class="main-menu">
+    <div class="row mb-4 no-gutters">
+        <div class="col-auto"><button class="btn btn-link btn-40 btn-close text-white"><span class="material-icons">chevron_left</span></button></div>
+        <div class="col-auto">
+            <div class="avatar avatar-40 rounded-circle position-relative">
+                <figure class="background">
+                    <img [src]="authUserDetails?.profilePix" alt="">
+                </figure>
+            </div>
+        </div>
+        <div class="col pl-3 text-left align-self-center">
+            <h6 class="mb-1" style="color: white;">{{authUserWalletDetails?.wallet_name}}</h6>
+            <p class="small text-default-secondary">{{authUserWalletDetails?.wallet_number}}</p>
+        </div>
+    </div>
+    <div class="menu-container">
+        <div class="row mb-4">
+            <div class="col">
+                <h4 class="mb-1 font-weight-normal" style="color: white;">{{ authUserWalletDetails?.available_balance | currency:'NGN':'symbol-narrow' }}</h4>
+                <p class="text-default-secondary">My Balance</p>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-default btn-40 rounded-circle" (click)="fundWallet()"><i class="material-icons">add</i></button>
+            </div>
+        </div>
+
+        <ul class="nav nav-pills flex-column ">
+            <li class="nav-item">
+                <a class="nav-link" href="/app/all-dashboard">
+                    <div>
+                        <span class="material-icons icon">account_balance</span> Home
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle2" data-toggle="dropdown">
+                    <div>
+                        <span class="material-icons icon">insert_chart</span> Transactions
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    <a routerLink="/app/fund-transfer" class="dropdown-item2">Fund Transfer</a>
+                    <a routerLink="/app/fund-wallet" class="dropdown-item2">Fund Wallet</a>
+                    <a routerLink="/app/fund-withdrawal" class="dropdown-item2">Fund Withdrawal</a>
+                    <a routerLink="/app/airtime" class="dropdown-item2">Airtime Recharge</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle2" data-toggle="dropdown">
+                    <div>
+                        <span class="material-icons icon">person</span> Profile
+                    </div>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- <a routerLink="/app/fund-transfer" class="dropdown-item2">Set Password</a> -->
+                    <a routerLink="/app/set-tranx-password" class="dropdown-item2">Set Transaction Password</a>
+                    <a routerLink="/app/change-password" class="dropdown-item2">Change Password</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/app/add-card">
+                    <div>
+                        <span class="material-icons icon">credit_card</span> Add Card
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/app/beneficiary">
+                    <div>
+                        <span class="material-icons icon">people</span> Beneficiary
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/app/bill-payment">
+                    <div>
+                        <span class="material-icons icon">payments</span> Bill Payment
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="text-center">
+            <a class="btn btn-outline-danger text-white rounded my-3 mx-auto" (click)="LogOut()">Sign out</a>
+        </div>
+    </div>
+</div>
+<div class="backdrop"></div>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0 main has-footer">
+    <!-- Fixed navbar -->
+    <header class="header">
+        <div class="row">
+            <div class="col-auto px-0">
+                <button class="menu-btn btn btn-40 btn-link" type="button">
+                <span class="material-icons">menu</span>
+            </button>
+            </div>
+            <div class="text-left col align-self-center">
+                <a class="navbar-brand" href="#">
+                    <h5 class="mb-0" style="color: white;">Finwallapp</h5>
+                </a>
+            </div>
+            <!-- <div class="ml-auto col-auto pl-0">
+                <button type="button" class="btn btn-link btn-40 colorsettings">
+                <span class="material-icons">color_lens</span>
+            </button>
+
+                <a href="notification.html" class="menu-btn btn btn-40 btn-link">
+                    <span class="material-icons">notifications_none</span>
+                    <span class="counter"></span>
+                </a>
+                <a href="profile.html" class="avatar avatar-30 shadow-sm rounded-circle ml-2">
+                    <figure class="m-0 background">
+                        <img src="assets/img/user1.png" alt="">
+                    </figure>
+                </a>
+            </div> -->
+        </div>
+    </header>
+
+    <router-outlet></router-outlet>
+
+</main>

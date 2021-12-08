@@ -1,0 +1,71 @@
+<!-- Begin page content -->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <main class="flex-shrink-0 main has-footer">
+        <!-- Fixed navbar -->
+        <header class="header">
+            <div class="row">
+                <div class="col-auto px-0">
+                    <button class="menu-btn btn btn-40 btn-link back-btn" type="button">
+                  <span class="material-icons">keyboard_arrow_left</span>
+              </button>
+                </div>
+                <div class="text-left col align-self-center">
+
+                </div>
+                <div class="ml-auto col-auto align-self-center">
+                    <a routerLink="/signup" class="text-white">
+                  Sign up
+              </a>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="container h-100 text-white">
+            <div class="row h-100">
+                <div class="col-12 align-self-center mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-4" style="margin-top: 60px;">
+                            <h2 class="font-weight-normal mb-5" style="color: white;">Login into<br>your e-wallet account</h2>
+
+                            <div class="col-12 col-md-12 pl-0 pr-0">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control nzErrorTip="Please enter username!">
+                                            <label class="form-label" style="font-weight: 600; color: white;">Username</label>
+                                            <input style="background-color: #3629b7; color: white;" formControlName="username" nz-input placeholder="Username" />
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 pl-0 pr-0">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <label class="form-label" style="font-weight: 600; color: white;">Password</label>
+                                        <nz-input-group [nzSuffix]="suffixTemplate" style="background-color: #3629b7; color: white;">
+                                            <input style="background-color: #3629b7; color: white;" [type]="passwordVisible ? 'text' : 'password'" nz-input placeholder="Password" formControlName="password" [(ngModel)]="password" />
+                                        </nz-input-group>
+                                        <ng-template #suffixTemplate>
+                                            <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+                                        </ng-template>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <p class="text-right"><a routerLink="/forget-password" class="text-white">Forgot Password?</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- footer-->
+    <div class="footer no-bg-shadow py-3">
+        <div class="row justify-content-center">
+            <div class="col">
+                <button nz-button nzBlock type="submit" nzType="primary" [disabled]="!loginForm.valid" [nzLoading]="isLoadingBtn" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Login</button>
+            </div>
+        </div>
+    </div>
+</form>

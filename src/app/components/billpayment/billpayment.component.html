@@ -1,0 +1,233 @@
+<div class="main-container">
+    <div class="container" *ngIf="firstPage">
+        <h5 class="text-center mt-3 mb-2">
+            Bill Payment !!!
+        </h5>
+        <p class="text-center mb-4">Select Payment</p>
+    </div>
+
+
+    <div class="container mb-4" *ngIf="firstPage">
+        <div class="card">
+            <div class="card-body text-center ">
+                <div class="row justify-content-equal no-gutters">
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3; border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">tv</span></div>
+                        <p class="text-secondary"><small>Cable TV</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3; border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">handyman</span></div>
+                        <p class="text-secondary"><small>Utilities</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">public</span></div>
+                        <p class="text-secondary"><small>Internet Service</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3; border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">toll</span></div>
+                        <p class="text-secondary"><small>Transport & Tolls Payment</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3; border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">school</span></div>
+                        <p class="text-secondary"><small>School<br> & Exam Fee</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">church</span></div>
+                        <p class="text-secondary"><small>Religious Institutions</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3; border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">sports_esports</span></div>
+                        <p class="text-secondary"><small>Lottery, Betting<br> & Gaming</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3; border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">hail</span></div>
+                        <p class="text-secondary"><small>Taxes<br> & Levies</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-bottom: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">business</span></div>
+                        <p class="text-secondary"><small>Investment<br> & Insurance</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 pb-3" style="border-right: 1px solid #A9ADB3;" (click)="getBillPaymentForm()">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default mt-3"><span class="material-icons">linear_scale</span></div>
+                        <p class="text-secondary"><small>Others</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="secondPage">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="col-lg-12">
+                    <div class="" *ngIf="secondPage">
+                        <div class="">
+                            <div class="col-12 col-md-6 mt-3">
+                                <h6 class="subtitle mb-0">
+                                    <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">payments</span></div>
+                                    Biller Payment
+                                </h6>
+                            </div>
+                            <form [formGroup]="billerForm">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <div class="az-form-group mt-3">
+                                            <nz-form-item style="margin-bottom: 9px !important;">
+                                                <nz-form-control>
+                                                    <label class="form-label" style="font-weight: 600;">Select Biller Category</label>
+                                                    <nz-select style="width: 100%;" formControlName="billerCategory" (ngModelChange)="getBillerCategoryById()" nzShowSearch nzAllowClear nzPlaceHolder="Select Beneficiary Type">
+                                                        <nz-option *ngFor="let list of allBillerCategoryList" [nzValue]="list.categoryid" [nzLabel]="list.categoryname"></nz-option>
+                                                    </nz-select>
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="az-form-group mt-3">
+                                            <nz-form-item style="margin-bottom: 9px !important;">
+                                                <nz-form-control>
+                                                    <label class="form-label" style="font-weight: 600;">Select Biller</label>
+                                                    <nz-select style="width: 100%;" formControlName="biller" (ngModelChange)="getBillerById()" nzShowSearch nzAllowClear nzPlaceHolder="Select Bank Code">
+                                                        <nz-option *ngFor="let list of allBillerList" [nzValue]="list.billerid" [nzLabel]="list.billername"></nz-option>
+                                                    </nz-select>
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="az-form-group mt-3">
+                                            <nz-form-item style="margin-bottom: 9px !important;">
+                                                <nz-form-control>
+                                                    <label class="form-label" style="font-weight: 600;">Select Package</label>
+                                                    <nz-select style="width: 100%;" formControlName="package" (ngModelChange)="getPaymentDetailsFromArrayList()" nzShowSearch nzAllowClear nzPlaceHolder="Select Bank Code">
+                                                        <nz-option *ngFor="let list of allBillerPackageList" [nzValue]="list.paymentitemid" [nzLabel]="list.paymentitemname"></nz-option>
+                                                    </nz-select>
+                                                </nz-form-control>
+                                            </nz-form-item>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="az-form-group mt-3">
+                                            <nz-form-item style="margin-bottom: 9px !important;">
+                                                <nz-form-control>
+                                                    <label class="form-label" style="font-weight: 600;">Customer ID</label>
+                                                    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                                                        <input type="text" maxlength="10" formControlName="customerId" nz-input placeholder="Customer ID" />
+                                                    </nz-input-group>
+                                                    <ng-template #suffixIconButton>
+                                                        <button nz-button nzType="primary" [nzLoading]="isLoadingBtnValidate" (click)="validateCustomerID()" nzSearch>Validate</button>
+                                                    </ng-template>
+                                                </nz-form-control>
+                                                <span class="text-danger valiFontSizes" *ngIf="billerForm.get('customerId').errors && (billerForm.get('customerId').touched || billerForm.get('customerId').dirty)">
+                                    <span *ngIf="billerForm.get('customerId').errors.required">Customer ID is required</span>
+                                                </span>
+                                            </nz-form-item>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="az-form-group mt-3">
+                                            <nz-form-item style="margin-bottom: 9px !important;">
+                                                <nz-form-control *ngIf="enableAmount">
+                                                    <label class="form-label" style="font-weight: 600;">Amount</label>
+                                                    <input type="text" [(ngModel)]="paymentDetailsAmount" formControlName="amount" nz-input placeholder="Enter Amount" />
+                                                </nz-form-control>
+                                                <nz-form-control *ngIf="disabledAmount">
+                                                    <label class="form-label" style="font-weight: 600;">Amount</label>
+                                                    <input type="text" [(ngModel)]="paymentDetailsAmount" formControlName="amount" nz-input placeholder="Enter Amount" readonly/>
+                                                </nz-form-control>
+                                                <span class="text-danger valiFontSizes" *ngIf="billerForm.get('amount').errors && (billerForm.get('amount').touched || billerForm.get('amount').dirty)">
+                            <span *ngIf="billerForm.get('amount').errors.required">Amount is required</span>
+                                                <span *ngIf="billerForm.get('amount').errors.pattern">Amount is invalid</span><br>
+                                                </span>
+                                            </nz-form-item>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="az-form-group mt-3">
+                                            <nz-form-item style="margin-bottom: 9px !important;">
+                                                <nz-form-control>
+                                                    <label class="form-label" style="font-weight: 600;">Fee</label>
+                                                    <input type="text" [(ngModel)]="paymentDetailsItemFee" formControlName="fee" nz-input placeholder="Enter Fee" />
+                                                </nz-form-control>
+                                                <span class="text-danger valiFontSizes" *ngIf="billerForm.get('fee').errors && (billerForm.get('fee').touched || billerForm.get('fee').dirty)">
+                          <span *ngIf="billerForm.get('fee').errors.required">Fee is required</span>
+                                                <span *ngIf="billerForm.get('fee').errors.pattern">Fee is invalid</span><br>
+                                                </span>
+                                            </nz-form-item>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-12 mt-4 pl-0 pr-0">
+                                    <button nz-button nzBlock nzType="primary" [disabled]="validationDetails === any" (click)="submitBillerPayment()" [nzLoading]="isLoadingBtnSub" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Make Payment</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="row h-100" *ngIf="successMessage">
+                        <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                            <div class="icon icon-120 bg-success-light text-success rounded-circle mb-3">
+                                <i class="material-icons display-4">check_circle</i>
+                            </div>
+                            <h2>Bill Payment !!</h2>
+                            <h6 class="text-secondary mb-3">Payment as been paid successfully</h6>
+                            <!-- <p class="text-secondary"><b>Trx Reference:</b>
+                          <badge class="badge-success ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ successReference }}</badge>
+                      </p> -->
+                            <a href="app/bill-payment"><button class="btn btn-success">Make another bill payment</button></a>
+                        </div>
+                    </div>
+
+                    <!-- error Message -->
+                    <div class="row h-100" *ngIf="errorMessage">
+                        <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                            <div class="icon icon-120 bg-danger-light text-danger rounded-circle mb-3">
+                                <i class="material-icons display-4">close</i>
+                            </div>
+                            <h2>Failed !!</h2>
+                            <h6 class="text-secondary mb-3">Message:
+                                <badge class="badge-danger ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ errorToDisplay }}</badge>
+                            </h6>
+                            <a href="app/bill-payment"><button class="btn btn-primary" >Try Again</button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<!-- footer-->
+<app-footer></app-footer>
+
+<!--  Transaction Modal-->
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Enter Transaction Password</ng-template>
+
+    <ng-template #modalContent>
+        <form [formGroup]="billerForm">
+            <div class="modal-content">
+                <div class="col-12">
+                    <div class="form-group float-label active">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <input type="password" formControlName="transactionPassword" class="form-control mt-4 mb-2" placeholder="Enter Your Password">
+                            </div>
+                        </div>
+                        <label class="form-control-label mt-4 mb-2">Transaction Password</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+        <button nz-button nzType="primary" (click)="billerPaymentSubmit()" [nzLoading]="isConfirmLoading">Submit</button>
+    </ng-template>
+</nz-modal>

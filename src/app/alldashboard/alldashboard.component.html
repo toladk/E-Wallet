@@ -1,0 +1,638 @@
+<div class="container mt-3 mb-4 text-center">
+    <h2 class="text-white">{{ authUserWalletDetails?.available_balance | currency:'NGN':'symbol-narrow' }}</h2>
+    <p class="text-white mb-4">Total Balance</p>
+</div>
+
+<div class="main-container">
+    <!-- page content start -->
+
+    <div class="container mb-4 text-center">
+        <div class="card bg-default-secondary shadow-default">
+            <div class="card-body">
+                <!-- Swiper -->
+                <div class="swiper-container addsendcarousel text-center">
+                    <div class="swiper-wrapper mb-4">
+                        <a routerLink="/app/fund-wallet" class="swiper-slide text-white">
+                            <div class="icon icon-50 rounded-circle mb-2 bg-white-light"><span class="material-icons">add</span></div>
+                            <p><small>Add Fund</small></p>
+                        </a>
+                        <a routerLink="/app/fund-transfer" class="swiper-slide text-white">
+                            <div class="icon icon-50 rounded-circle mb-2 bg-white-light"><span class="material-icons">send</span></div>
+                            <p><small>Send</small></p>
+                        </a>
+                        <a routerLink="/app/airtime" class="swiper-slide text-white">
+                            <div class="icon icon-50 rounded-circle mb-2 bg-white-light"><span class="material-icons">phone</span></div>
+                            <p><small>Airtime</small></p>
+                        </a>
+                        <a routerLink="/app/airtime" class="swiper-slide text-white">
+                            <div class="icon icon-50 rounded-circle mb-2 bg-white-light"><span class="material-icons">book</span></div>
+                            <p><small>Data</small></p>
+                        </a>
+                        <a routerLink="/app/bill-payment" class="swiper-slide text-white">
+                            <div class="icon icon-50 rounded-circle mb-2 bg-white-light"><span class="material-icons">credit_card</span></div>
+                            <p><small>Pay Bills</small></p>
+                        </a>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Swiper -->
+
+    <div class="container mb-4">
+        <div class="swiper-container swiper-users text-center ">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="card ">
+                        <div class="card-body p-2">
+                            <a href="send_money.html" class="avatar avatar-60 rounded mb-1 bg-default-light">
+                                <span class="material-icons">add</span>
+                            </a>
+                            <p class="text-secondary"><small>Send</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user1.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Errica</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user2.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Alisia</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user3.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Maxsmith</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user4.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Jenelia</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user1.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Errica</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user1.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Errica</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user2.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Alisia</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user3.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Maxsmith</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user2.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Alisia</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user4.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Jenelia</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card-body p-2">
+                            <div class="avatar avatar-60 rounded mb-1">
+                                <div class="background"><img src="assets/img/user1.png" alt=""></div>
+                            </div>
+                            <p class="text-secondary"><small>Errica</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-4">
+        <div class="card">
+            <div class="card-body text-center ">
+                <div class="row justify-content-equal no-gutters">
+                    <div class="col-4 col-md-2 mb-3">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">qr_code_2</span></div>
+                        <p class="text-secondary"><small>Pay</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 mb-3">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">swap_horiz</span></div>
+                        <p class="text-secondary"><small>Transfer</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 mb-3">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">sim_card</span></div>
+                        <p class="text-secondary"><small>Reacharge</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 mb-3">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">account_circle</span></div>
+                        <p class="text-secondary"><small>Send</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 mb-3">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">receipt</span></div>
+                        <p class="text-secondary"><small>Bill</small></p>
+                    </div>
+                    <div class="col-4 col-md-2 mb-3">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">wb_incandescent</span></div>
+                        <p class="text-secondary"><small>Electricity</small></p>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-outline-secondary rounded" id="more-expand-btn">Show more <span class="ml-2 small material-icons">expand_more</span></button>
+                <div class="row justify-content-equal no-gutters" id="more-expand">
+                    <div class="col-4 col-md-2">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">beach_access</span></div>
+                        <p class="text-secondary"><small>Insurance</small></p>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">drive_eta</span></div>
+                        <p class="text-secondary"><small>Car</small></p>
+                    </div>
+                    <div class="col-4 col-md-2">
+                        <div class="icon icon-50 rounded-circle mb-1 bg-default-light text-default"><span class="material-icons">flight</span></div>
+                        <p class="text-secondary"><small>Flight</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container mb-4">
+        <div class="row">
+            <div class="col">
+                <h6 class="subtitle mb-3">Status </h6>
+            </div>
+            <div class="col-auto"><a href="" class="text-default">View all</a></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-auto pr-0">
+                                <div class="avatar avatar-50 border-0 bg-default-light rounded-circle text-default">
+                                    <i class="material-icons vm text-template">local_atm</i>
+                                </div>
+                            </div>
+                            <div class="col-4 align-self-center">
+                                <h6 class="mb-1">EMI</h6>
+                                <p class="small text-secondary">Home Loan</p>
+                            </div>
+                            <div class="col-auto align-self-center border-left">
+                                <h6 class="mb-1">$ 1548.00</h6>
+                                <p class="small text-secondary">Due: 15-12-2019</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card border-0">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-auto pr-0">
+                                <div class="avatar avatar-50 border-0 bg-default-light rounded-circle text-default">
+                                    <i class="material-icons vm text-template">local_atm</i>
+                                </div>
+                            </div>
+                            <div class="col-4 align-self-center">
+                                <h6 class="mb-1">EMI</h6>
+                                <p class="small text-secondary">Car Loan</p>
+                            </div>
+                            <div class="col-auto align-self-center border-left">
+                                <h6 class="mb-1">$ 658.00</h6>
+                                <p class="small text-secondary">Due: 18-12-2019</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!--For Transaction Cards -->
+    <div class="swiper-container swipercards">
+        <div class="row">
+            <div class="col text-center">
+                <h5 class="subtitle">Cards</h5>
+            </div>
+        </div>
+        <div class="swiper-wrapper pb-4">
+            <div class="swiper-slide ">
+                <!-- <div>
+                    {{activateSlide(i)}}
+                </div> -->
+                <div class="" *ngFor="let list of allCardList">
+                    <div class="card border-0 bg-default text-white mt-3" *ngIf="list.cardScheme === 'Verve'">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <i class="material-icons vm text-template">credit_card</i>
+                                </div>
+                                <div class="col pl-0">
+                                    <h6 class="mb-1 text-white">{{ list.cardScheme }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="mb-0 mt-3 text-white">**** **** **** ****</h5>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-0">{{ list.expiryDate }}</p>
+                                    <p class="small ">Expiry date</p>
+                                </div>
+                                <div class="col-auto align-self-center text-right">
+                                    <p class="mb-0">{{ list.nameOnCard }}</p>
+                                    <p class="small">Card Holder</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-0 bg-warning text-white mt-3" *ngIf="list.cardScheme === 'Mastercard'">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <i class="material-icons vm text-template">credit_card</i>
+                                </div>
+                                <div class="col pl-0">
+                                    <h6 class="mb-1 text-white">{{ list.cardScheme }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="mb-0 mt-3 text-white">**** **** **** ****</h5>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-0">{{ list.expiryDate }}</p>
+                                    <p class="small ">Expiry date</p>
+                                </div>
+                                <div class="col-auto align-self-center text-right">
+                                    <p class="mb-0">{{ list.nameOnCard }}</p>
+                                    <p class="small">Card Holder</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="card border-0 text-white mt-3">
+                    <div class="card-header">
+                        <div class="col pl-0">
+                            <a routerLink="/app/add-card">
+                                <h6 class="mb-1 text-center"> Add New Card</h6>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body" style="padding: 2.1rem; background-color: transparent;">
+                        <a routerLink="/app/add-card">
+                            <button class="btn btn-primary btn-sm" style="margin-left: 60px;">Add Card</button>
+                        </a>
+                    </div>
+                    <div class="card-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Last 10 Transactions -->
+    <div class="container mb-4">
+        <div class="card" id="addtodevice">
+            <div class="card-header border-0 bg-none">
+                <div class="row">
+                    <div class="col align-self-center">
+                        <h6 class="mb-0">Last 10 Transactions</h6>
+                    </div>
+                    <div class="col-auto align-self-center">
+                        <!-- <button class="btn btn-default btn-sm rounded">
+                      Export
+                  </button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="all font-weight-medium">Amount</th>
+                            <th class="min-tablet font-weight-medium">Narration</th>
+                            <th class=" font-weight-medium">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let list of last10TransactionList">
+                            <td>
+                                <div class="text-success" *ngIf="list.debitOrCredit === 'C'"> + {{ list.transactionAmount }}</div>
+                                <div class="text-danger" *ngIf="list.debitOrCredit === 'D'"> - {{ list.transactionAmount }}</div>
+                            </td>
+                            <td>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-secondary small mt-1">{{ list.narration }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a nz-dropdown [nzDropdownMenu]="menu" style="color: #000;">
+
+                                    <button nz-button nzType="default" nzShape="circle" style="padding: 1px 0 !important;"><i nz-icon nzType="down"></i></button>
+                                </a>
+                                <nz-dropdown-menu #menu="nzDropdownMenu">
+                                    <ul nz-menu nzSelectable>
+                                        <li nz-menu-item data-toggle="modal" data-target="#exampleModalScrollable">View Receipt</li>
+                                        <li nz-menu-item data-toggle="modal" data-target="#exampleModalScrollable2">Transaction Details</li>
+                                    </ul>
+                                </nz-dropdown-menu>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Last 10 Transactions -->
+
+    <!-- <div class="container mb-4">
+        <div class="row mb-3">
+            <div class="col">
+                <h6 class="subtitle mb-0">Upcoming Payments </h6>
+            </div>
+            <div class="col-auto"><a href="allpayment.html" class="float-right small">View All</a></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="mb-1">$ 1548.00 </h5>
+                                <p class="text-secondary">20d to pay electricity bill</p>
+
+                            </div>
+                            <div class="col-auto pl-0">
+                                <button class="btn btn-40 bg-default-light text-default rounded-circle">
+                            <i class="material-icons">local_atm</i>
+                        </button>
+                            </div>
+                        </div>
+                        <div class="progress h-5 mt-3">
+                            <div class="progress-bar bg-default" role="progressbar" style="width:35%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="mb-1">$ 106.00</h5>
+                                <p class="text-secondary">33 days to pay gas bill</p>
+                            </div>
+                            <div class="col-auto pl-0">
+                                <button class="btn btn-40 bg-default-light text-default rounded-circle">
+                            <i class="material-icons">local_atm</i>
+                        </button>
+                            </div>
+                        </div>
+                        <div class="progress h-5 mt-3">
+                            <div class="progress-bar bg-default" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container ">
+        <div class="row">
+            <div class="col text-center">
+                <h5 class="subtitle">Quick Summary</h5>
+                <p class="text-secondary">Take a look at your summary</p>
+            </div>
+        </div>
+        <div class="row text-center mt-3">
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar avatar-60 bg-default-light rounded-circle text-default">
+                            <i class="material-icons vm md-36 text-template">card_giftcard</i>
+                        </div>
+                        <h3 class="mt-3 mb-0 font-weight-normal">2546</h3>
+                        <p class="text-secondary small">No of Transactions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar avatar-60 bg-default-light rounded-circle text-default">
+                            <i class="material-icons vm md-36 text-template">subscriptions</i>
+                        </div>
+                        <h3 class="mt-3 mb-0 font-weight-normal">635</h3>
+                        <p class="text-secondary small">No of Payments</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar avatar-60 bg-default-light rounded-circle text-default">
+                            <i class="material-icons vm md-36 text-template">local_florist</i>
+                        </div>
+                        <h3 class="mt-3 mb-0 font-weight-normal">1542</h3>
+                        <p class="text-secondary small">No of Beneficiaries</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 mb-4">
+                    <div class="card-body">
+                        <div class="avatar avatar-60 bg-default-light rounded-circle text-default">
+                            <i class="material-icons vm md-36 text-template">location_city</i>
+                        </div>
+                        <h3 class="mt-3 mb-0 font-weight-normal">154</h3>
+                        <p class="text-secondary small">No of Funds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer-->
+<app-footer></app-footer>
+
+
+<!-- Receipt Modal-->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Transaction Receipt</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 pl-0 pr-0"><img class="float-right" src="assets/img/whatsapp.png" style="width: 50px; height: 50px;" /></div>
+                        <div class="col-12 pl-0 pr-0 mt-5">
+                            <h6 class="mb-0">Online Transaction Receipt</h6>
+                        </div>
+                        <div class="col-12 pl-0 pr-0 mb-2">
+                            <p>{{ todayDate }}</p>
+                        </div>
+                    </div>
+                    <div class="row" style="border-top: 2px solid #4BA145;">
+                        <div class="col-6 col-md-6 pl-0 pr-0 d-flex mt-3">
+                            <div class=""><i class="material-icons mr-2" style="color: #4BA145;">sync_alt</i></div>
+                            <div class="">TRANSACTION</div>
+                        </div>
+                        <div class="col-6 col-md-6 pl-0 pr-0 mt-3">
+                            <div class="col-12 pl-0 pr-0 text-right">NGN 3,000</div>
+                            <div class="col-12 pl-0 pr-0 text-right">Date of Trnx</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" style="border-top: 2px solid #4BA145;">
+                        <div class="col-6 col-md-6 pl-0 pr-0 d-flex mt-3">
+                            <div class=""><i class="material-icons mr-2" style="color: #4BA145;">person_add</i></div>
+                            <div class="">BENEFICIARY</div>
+                        </div>
+                        <div class="col-6 col-md-6 pl-0 pr-0 mt-3">
+                            <div class="col-12 pl-0 pr-0 text-right">SEUN GBEMISOLA</div>
+                            <div class="col-12 pl-0 pr-0 text-right">0993321127</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" style="border-top: 2px solid #4BA145;">
+                        <div class="col-6 col-md-6 pl-0 pr-0 d-flex mt-3">
+                            <div class=""><i class="material-icons mr-2" style="color: #4BA145;">person</i></div>
+                            <div class="">SENDER</div>
+                        </div>
+                        <div class="col-6 col-md-6 pl-0 pr-0 mt-3">
+                            <div class="col-12 pl-0 pr-0 text-right">FATIMAH FRANK</div>
+                            <div class="col-12 pl-0 pr-0 text-right">4389239829</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" style="border-top: 2px solid #4BA145;">
+                        <div class="col-6 col-md-6 pl-0 pr-0 d-flex mt-3">
+                            <div class=""><i class="material-icons mr-2" style="color: #4BA145;">autorenew</i></div>
+                            <div class="">STATUS</div>
+                        </div>
+                        <div class="col-6 col-md-6 pl-0 pr-0 mt-3">
+                            <div class="col-12 pl-0 pr-0 text-right">Successful</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" style="border-top: 2px solid #4BA145;">
+                        <div class="col-6 col-md-6 pl-0 pr-0 d-flex mt-3">
+                            <div class=""><i class="material-icons mr-2" style="color: #4BA145;">insert_comment</i></div>
+                            <div class="">NARRATION</div>
+                        </div>
+                        <div class="col-6 col-md-6 pl-0 pr-0 mt-3">
+                            <div class="col-12 pl-0 pr-0 text-right">For cooking in Nigeria</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm">Download Receipt</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Transaction Details Modal-->
+<div class="modal fade" id="exampleModalScrollable2" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Transaction Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6 col-md-6 pl-0 pt-2 pb-2">
+                            <div class="col-12 pl-0" style="font-weight: 500;"><i class="material-icons mr-2" style="color: #4BA145; font-size: 14px;">sync_alt</i>NGN 3,000</div>
+                            <div class="col-12 pl-0" style="margin-left: 22px;">Date of Trnx</div>
+                        </div>
+                        <div class="col-6 col-md-6 pr-0 pt-2 pb-2">
+                            <div class="col-12 pl-0" style="font-weight: 500;"><i class="material-icons mr-2" style="color: #4BA145; font-size: 14px;">sync_alt</i>NGN 3,000</div>
+                            <div class="col-12 pl-0" style="margin-left: 22px;">Date of Trnx</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

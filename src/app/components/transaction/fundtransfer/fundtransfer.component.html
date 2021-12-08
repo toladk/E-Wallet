@@ -1,0 +1,335 @@
+<div class="main-container">
+    <div class="container">
+        <h5 class="text-center mt-3 mb-2" *ngIf="selectTo">
+            Fund Transfer !!!
+        </h5>
+        <p class="text-center mb-4" *ngIf="selectTo">Transfer to either Wallet or an Account</p>
+
+        <form [formGroup]="fundTransferForm">
+            <div class="row" *ngIf="selectTo">
+                <div class="col-12 col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="subtitle mb-0">
+                                <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">account_balance_wallet</span></div>
+                                Transfer to Wallet
+                            </h6>
+                            <div class="col-12 col-md-12">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control nzErrorTip="Please input  value!">
+                                            <label class="form-label" style="font-weight: 600; color: darkslategray;">Select Wallet Beneficiary</label>
+                                            <nz-select style="width: 100%;" (ngModelChange)="getWalletBeneficiaryById()" formControlName="walletBeneficiary" nzShowSearch nzAllowClear nzPlaceHolder="Select Beneficiary">
+                                                <nz-option *ngFor="let list of allWalletBeneficiaryList" [nzValue]="list.id" [nzLabel]="list.beneficiary_name"></nz-option>
+                                                <nz-option nzValue="addBeneWallet" nzLabel="Add Wallet Beneficiary"></nz-option>
+                                            </nz-select>
+                                            <div *ngIf="f.walletBeneficiary.touched && f.walletBeneficiary.invalid" class="mt-1" style="color: red;">
+                                                <div *ngIf="f.walletBeneficiary.errors.required">wallet beneficiary is required*.</div>
+                                            </div>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="subtitle mb-0">
+                                <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">account_balance</span></div>
+                                Transfer to Account
+                            </h6>
+                            <div class="col-12 col-md-12">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control nzErrorTip="Please input  value!">
+                                            <label class="form-label" style="font-weight: 600; color: darkslategray;">Select Account Beneficiary</label>
+                                            <nz-select style="width: 100%;" (ngModelChange)="getBankBeneficiaryById()" formControlName="bankBeneficiary" nzShowSearch nzAllowClear nzPlaceHolder="Select Beneficiary">
+                                                <nz-option *ngFor="let list of allBankBeneficiaryList" [nzValue]="list.id" [nzLabel]="list.beneficiary_name"></nz-option>
+                                                <nz-option nzValue="addBeneAccount" nzLabel="Add Account Beneficiary"></nz-option>
+                                            </nz-select>
+                                            <div *ngIf="f.bankBeneficiary.touched && f.bankBeneficiary.invalid" class="mt-1" style="color: red;">
+                                                <div *ngIf="f.bankBeneficiary.errors.required">account beneficiary is required*.</div>
+                                            </div>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+        <!--For Wallet Transfer-->
+        <form [formGroup]="fundTransferForm">
+            <div class="card mb-4" *ngIf="walletTransfer">
+                <div class="card-header">
+                    <h6 class="subtitle mb-0">
+                        <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">account_balance_wallet</span></div>
+                        Transfer to Wallet
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Wallet Name</label>
+                                        <input [(ngModel)]="walletName" formControlName="appId" nz-input placeholder="Wallet Name" />
+                                        <div *ngIf="f.appId.touched && f.appId.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.appId.errors.required">Wallet Name is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Wallet Account Number</label>
+                                        <input [(ngModel)]="walletAccountNo" formControlName="walletAccountNumber" nz-input placeholder="Account Number" />
+                                        <div *ngIf="f.walletAccountNumber.touched && f.walletAccountNumber.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.walletAccountNumber.errors.required">Wallet Account Number is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Credit Wallet Number</label>
+                                        <input formControlName="creditWalletNumber" nz-input placeholder="Credit Card Number" />
+                                        <div *ngIf="f.creditWalletNumber.touched && f.creditWalletNumber.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.creditWalletNumber.errors.required">Credit Card Number is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Amount</label>
+                                        <input formControlName="amount" nz-input placeholder="Amount" />
+                                        <div *ngIf="f.amount.touched && f.amount.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.amount.errors.required">Amount is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Narration</label>
+                                        <input formControlName="narration" nz-input placeholder="Narration" />
+                                        <div *ngIf="f.narration.touched && f.narration.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.narration.errors.required">Narration is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Transaction Reference</label>
+                                        <input formControlName="transactionReference" nz-input placeholder="Transaction Reference" />
+                                        <div *ngIf="f.transactionReference.touched && f.transactionReference.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.transactionReference.errors.required">Transaction Reference is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button nz-button nzBlock type="submit" nzType="primary" (click)="submitWalletTransfer()" [disabled]="fundTransferForm.value.amount === ''" [nzLoading]="isLoadingBtn" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Transfer fund to wallet</button>
+                </div>
+            </div>
+        </form>
+
+
+        <!--For Account Transfer-->
+        <form [formGroup]="fundTransferForm">
+            <div class="card mb-4" *ngIf="accountTransfer">
+                <div class="card-header">
+                    <h6 class="subtitle mb-0">
+                        <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">account_balance_wallet</span></div>
+                        Transfer to Account
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Wallet Name</label>
+                                        <input [(ngModel)]="walletName" formControlName="appId" nz-input placeholder="Wallet Name" />
+                                        <div *ngIf="f.appId.touched && f.appId.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.appId.errors.required">Wallet Name is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Wallet Account Number</label>
+                                        <input [(ngModel)]="walletAccountNo" formControlName="walletAccountNumber" nz-input placeholder="Account Number" />
+                                        <div *ngIf="f.walletAccountNumber.touched && f.walletAccountNumber.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.walletAccountNumber.errors.required">Wallet Account Number is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Credit Wallet Number</label>
+                                        <input formControlName="creditWalletNumber" nz-input placeholder="Credit Card Number" />
+                                        <div *ngIf="f.creditWalletNumber.touched && f.creditWalletNumber.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.creditWalletNumber.errors.required">Credit Card Number is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Amount</label>
+                                        <input formControlName="amount" nz-input placeholder="Amount" />
+                                        <div *ngIf="f.amount.touched && f.amount.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.amount.errors.required">Amount is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Narration</label>
+                                        <input formControlName="narration" nz-input placeholder="Narration" />
+                                        <div *ngIf="f.narration.touched && f.narration.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.narration.errors.required">Narration is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12 col-md-6">
+                            <div class="az-form-grou mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Transaction Reference</label>
+                                        <input formControlName="transactionReference" nz-input placeholder="Transaction Reference" />
+                                        <div *ngIf="f.transactionReference.touched && f.transactionReference.invalid" class="mt-1" style="color: red;">
+                                            <div *ngIf="f.transactionReference.errors.required">Transaction Reference is required*.</div>
+                                        </div>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button nz-button nzBlock type="submit" nzType="primary" (click)="submitFundTransfer()" [disabled]="!fundTransferForm.valid" [nzLoading]="isLoadingBtn2" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Transfer fund to wallet</button>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- Success Message -->
+        <div class="row h-100" *ngIf="successMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-success-light text-success rounded-circle mb-3">
+                    <i class="material-icons display-4">check_circle</i>
+                </div>
+                <h2>Account Funded !!</h2>
+                <h6 class="text-secondary mb-3">Account {{ walletAccountNo2 }} as been funded successfully</h6>
+                <p class="text-secondary"><b>Trx Reference:</b>
+                    <badge class="badge-success ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ successReference }}</badge>
+                </p>
+                <a href="app/fund-transfer"><button class="btn btn-success" >Make another transfer</button></a>
+            </div>
+        </div>
+
+        <!-- error Message -->
+        <div class="row h-100" *ngIf="errorMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-danger-light text-danger rounded-circle mb-3">
+                    <i class="material-icons display-4">close</i>
+                </div>
+                <h2>Failed !!</h2>
+                <h6 class="text-secondary mb-3">Message:
+                    <badge class="badge-danger ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ errorToDisplay }}</badge>
+                </h6>
+                <a href="app/fund-transfer"><button class="btn btn-primary" >Try Again</button></a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- footer-->
+<app-footer></app-footer>
+
+
+
+<!--  Token Modal-->
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Enter Transaction Password</ng-template>
+
+    <ng-template #modalContent>
+        <form [formGroup]="fundTransferForm">
+            <div class="modal-content">
+                <div class="col-12">
+                    <div class="form-group float-label active">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <input type="password" formControlName="transactionPassword" class="form-control mt-4 mb-2" placeholder="Enter Your Password">
+                            </div>
+                        </div>
+                        <label class="form-control-label mt-4 mb-2">Transaction Password</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+        <button nz-button nzType="primary" (click)="validateTransactionPassword()" [nzLoading]="isConfirmLoading">Submit</button>
+    </ng-template>
+</nz-modal>

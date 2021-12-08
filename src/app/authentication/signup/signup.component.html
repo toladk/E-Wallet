@@ -1,0 +1,107 @@
+<!-- Begin page content -->
+<form [formGroup]="signUpForm">
+    <main class="flex-shrink-0 main has-footer">
+        <!-- Fixed navbar -->
+        <header class="header">
+            <div class="row">
+                <div class="col-auto px-0">
+                    <button class="menu-btn btn btn-40 btn-link back-btn" type="button">
+                  <span class="material-icons">keyboard_arrow_left</span>
+              </button>
+                </div>
+                <div class="text-left col align-self-center">
+
+                </div>
+                <div class="ml-auto col-auto align-self-center">
+                    <a routerLink="/login" class="text-white">
+                  Sign In
+              </a>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="container h-100 text-white">
+            <div class="row h-100">
+                <div class="col-12 align-self-center mb-4">
+                    <div class="row justify-content-center">
+                        <div class="col-11 col-sm-7 col-md-7 col-lg-7 col-xl-7" style="margin-top: 20px;">
+                            <h2 class="font-weight-normal mb-5 text-white">Create new<br>account with us</h2>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="az-form-group mt-3">
+                                        <nz-form-item style="margin-bottom: 9px !important;">
+                                            <nz-form-control nzErrorTip="Please enter valid email!">
+                                                <label class="form-label" style="font-weight: 600; color: white;">email</label>
+                                                <input style="background-color: #3629b7; color: white;" formControlName="email" nz-input placeholder="Email" />
+                                            </nz-form-control>
+                                        </nz-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="az-form-group mt-3">
+                                        <label class="form-label" style="font-weight: 600; color: white;">BVN</label>
+                                        <nz-input-group nzSearch nzSize="default" [nzAddOnAfter]="suffixButton" style="margin-bottom: 9px !important;">
+                                            <input type="number" style="background-color: #3629b7; color: white;" nz-input placeholder="BVN" formControlName="bvn" />
+                                        </nz-input-group>
+                                        <ng-template #suffixButton>
+                                            <button nz-button nzType="primary" nzSize="default" nzSearch [nzLoading]="isLoadingBtn" (click)="validateBvn()">Validate BVN</button>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="az-form-group mt-3">
+                                        <label class="form-label" style="font-weight: 600; color: white;">Phone Number</label>
+                                        <nz-input-group nzCompact style="margin-bottom: 9px !important;">
+                                            <nz-select [ngModel]="'+234'" formControlName="codePhoneNumber">
+                                                <nz-option [nzLabel]="'+234'" [nzValue]="'+234'"></nz-option>
+                                                <nz-option [nzLabel]="'+233'" [nzValue]="'+233'"></nz-option>
+                                            </nz-select>
+                                            <input type="text" [(ngModel)]="bvnPhoneNumber" formControlName="phoneNumber" nz-input placeholder="last 10 Digit" style="background-color: #3629b7; color: white; width:75%;" />
+                                        </nz-input-group>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="az-form-group mt-3">
+                                        <nz-form-item style="margin-bottom: 9px !important;">
+                                            <nz-form-control nzErrorTip="Please select  value!">
+                                                <label class="form-label" style="font-weight: 600; color: white;">Merchant ID</label>
+                                                <nz-select style="width: 100%;" formControlName="merchantId" nzShowSearch nzAllowClear nzPlaceHolder="Select Beneficiary">
+                                                    <nz-option *ngFor="let list of allMerchantList" [nzValue]="list.merchantId" [nzLabel]="list.merchantName"></nz-option>
+                                                </nz-select>
+                                            </nz-form-control>
+                                        </nz-form-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="az-form-group mt-3">
+                                        <nz-form-item style="margin-bottom: 9px !important;">
+                                            <nz-form-control nzErrorTip="Please enter address!">
+                                                <label class="form-label" style="font-weight: 600; color: white;">Address</label>
+                                                <input style="background-color: #3629b7; color: white;" formControlName="address" nz-input placeholder="Address" />
+                                            </nz-form-control>
+                                        </nz-form-item>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- footer-->
+    <div class="footer no-bg-shadow py-3">
+        <div class="row justify-content-center">
+            <div class="col">
+                <button nz-button nzBlock type="submit" nzType="primary" (click)="submit()" [disabled]="!clicked" [nzLoading]="isLoadingBtn2" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</form>

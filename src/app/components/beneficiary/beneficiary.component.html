@@ -1,0 +1,259 @@
+<div class="main-container">
+    <div class="container">
+        <h5 class="text-center mt-3 mb-2" *ngIf="beneAllPage">
+            Beneficiary !!!
+        </h5>
+        <p class="text-center mb-4" *ngIf="beneAllPage">List of beneficiaries</p>
+
+        <div class="card mb-4" *ngIf="beneAllPage">
+            <!-- <div class="card-header">
+                <h6 class="subtitle mb-0">
+                    <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">account_balance_wallet</span></div>
+                    Fund wallet with card
+                </h6>
+            </div> -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-6 mt-3" *ngIf="beneTableInfo">
+                        <button nz-button nzBlock nzType="primary" (click)="addBeneButton()" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Add New Beneficiary</button>
+                    </div>
+                    <div class="" *ngIf="beneFields">
+                        <div class="col-12 col-md-6 mt-3">
+                            <h6 class="subtitle mb-0">
+                                <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">people</span></div>
+                                Beneficiary Details
+                            </h6>
+                        </div>
+                        <form [formGroup]="beneficiaryForm">
+                            <div class="col-12 col-md-6">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control>
+                                            <label class="form-label" style="font-weight: 600;">Beneficiary Type</label>
+                                            <nz-select style="width: 100%;" formControlName="beneficiaryType" (ngModelChange)="checkingBenType()" nzShowSearch nzAllowClear nzPlaceHolder="Select Beneficiary Type">
+                                                <nz-option *ngFor="let list of allBeneficiaryTypes" [nzValue]="list.name" [nzLabel]="list.name"></nz-option>
+                                            </nz-select>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6" *ngIf="showingBankCode">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control>
+                                            <label class="form-label" style="font-weight: 600;">Beneficiary Bank</label>
+                                            <nz-select style="width: 100%;" formControlName="beneficiaryBankCode" nzShowSearch nzAllowClear nzPlaceHolder="Select Bank Code">
+                                                <nz-option *ngFor="let list of allBank" [nzValue]="list.bankCode" [nzLabel]="list.bankName"></nz-option>
+                                            </nz-select>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6" *ngIf="showingBankCode">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control>
+                                            <label class="form-label" style="font-weight: 600;">Beneficiary Account No</label>
+                                            <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                                                <input type="text" maxlength="10" formControlName="beneficiaryAccountNumber" nz-input placeholder="Account No" />
+                                            </nz-input-group>
+                                            <ng-template #suffixIconButton>
+                                                <button nz-button nzType="primary" [nzLoading]="isLoadingBtnValidate" (click)="validatAccountNo()" nzSearch>Validate</button>
+                                            </ng-template>
+                                        </nz-form-control>
+                                        <span class="text-danger valiFontSizes" *ngIf="beneficiaryForm.get('beneficiaryAccountNumber').errors && (beneficiaryForm.get('beneficiaryAccountNumber').touched || beneficiaryForm.get('beneficiaryAccountNumber').dirty)">
+                                          <span *ngIf="beneficiaryForm.get('beneficiaryAccountNumber').errors.required">Beneficiary account no is required</span>
+                                        <span *ngIf="beneficiaryForm.get('beneficiaryAccountNumber').errors.pattern">Beneficiary account no is invalid</span><br>
+                                        </span>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="az-form-group mt-3" *ngIf="showingBeneName">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control>
+                                            <label class="form-label" style="font-weight: 600;">Beneficiary Name</label>
+                                            <input type="text" formControlName="beneficiaryName" [(ngModel)]="accountNameView" nz-input placeholder="Enter Beneficiary Name" readonly/>
+                                        </nz-form-control>
+                                        <span class="text-danger valiFontSizes" *ngIf="beneficiaryForm.get('beneficiaryName').errors && (beneficiaryForm.get('beneficiaryName').touched || beneficiaryForm.get('beneficiaryName').dirty)">
+                                <span *ngIf="beneficiaryForm.get('beneficiaryName').errors.required">Beneficiary name is required</span>
+                                        <span *ngIf="beneficiaryForm.get('beneficiaryName').errors.pattern">Beneficiary name is invalid</span><br>
+                                        </span>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6" *ngIf="showingBeneWalletValidate">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control>
+                                            <label class="form-label" style="font-weight: 600;">Beneficiary Wallet No</label>
+                                            <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                                                <input type="text" maxlength="10" formControlName="beneficiaryAccountNumber" nz-input placeholder="Wallet No" />
+                                            </nz-input-group>
+                                            <ng-template #suffixIconButton>
+                                                <button nz-button nzType="primary" [nzLoading]="isLoadingBtnValidate" (click)="validateWallet()" nzSearch>Validate</button>
+                                            </ng-template>
+                                        </nz-form-control>
+                                        <span class="text-danger valiFontSizes" *ngIf="beneficiaryForm.get('beneficiaryAccountNumber').errors && (beneficiaryForm.get('beneficiaryAccountNumber').touched || beneficiaryForm.get('beneficiaryAccountNumber').dirty)">
+                                          <span *ngIf="beneficiaryForm.get('beneficiaryAccountNumber').errors.required">Beneficiary Wallet no is required</span>
+                                        <span *ngIf="beneficiaryForm.get('beneficiaryAccountNumber').errors.pattern">Beneficiary Wallet no is invalid</span><br>
+                                        </span>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6" *ngIf="showingBeneWalletValidate">
+                                <div class="az-form-group mt-3">
+                                    <nz-form-item style="margin-bottom: 9px !important;">
+                                        <nz-form-control>
+                                            <label class="form-label" style="font-weight: 600;">Wallet Name</label>
+                                            <input type="text" formControlName="walletName" [(ngModel)]="walletNameView" nz-input placeholder="Enter Beneficiary Name" readonly/>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mt-4">
+                                <button nz-button nzBlock nzType="primary" [disabled]="" (click)="submitBeneficiary()" [nzLoading]="isLoadingBtnSub" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Add Beneficiary</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="mt-4" *ngIf="beneTableInfo">
+                    <div class="card-header border-0 bg-none">
+                        <div class="row">
+                            <div class="col align-self-center">
+                                <h6 class="mb-0">List of Beneficiaries</h6>
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <!-- <button class="btn btn-default btn-sm rounded">
+                          Export
+                      </button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="min-tablet font-weight-medium">Name</th>
+                                    <th class="all font-weight-medium">Account No</th>
+                                    <th class=" font-weight-medium">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let list of allBeneficiaryList">
+                                    <td>
+                                        {{ list.beneficiary_name }}
+                                    </td>
+                                    <td>
+                                        {{ list.beneficiary_account_number }}
+                                    </td>
+                                    <td>
+                                        <button nz-button nz-dropdown [nzDropdownMenu]="menu4">
+                                        <i nz-icon nzType="down"></i>
+                                      </button>
+                                        <nz-dropdown-menu #menu4="nzDropdownMenu">
+                                            <ul nz-menu>
+                                                <li nz-menu-item (click)="beneficiaryInfo(list.id)">Beneficiary Details</li>
+                                                <li nz-menu-item (click)="deleteBeneficiary(list.id)">Delete Beneficiary</li>
+                                            </ul>
+                                        </nz-dropdown-menu>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- Success Message -->
+        <div class="row h-100" *ngIf="successMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-success-light text-success rounded-circle mb-3">
+                    <i class="material-icons display-4">check_circle</i>
+                </div>
+                <h2>Add Beneficiary !!</h2>
+                <h6 class="text-secondary mb-3">Beneficiary as been added successfully</h6>
+                <!-- <p class="text-secondary"><b>Trx Reference:</b>
+                <badge class="badge-success ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ successReference }}</badge>
+            </p> -->
+                <a href="app/beneficiary"><button class="btn btn-success" >Add another beneficiary</button></a>
+            </div>
+        </div>
+
+        <!-- error Message -->
+        <div class="row h-100" *ngIf="errorMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-danger-light text-danger rounded-circle mb-3">
+                    <i class="material-icons display-4">close</i>
+                </div>
+                <h2>Failed !!</h2>
+                <h6 class="text-secondary mb-3">Message:
+                    <badge class="badge-danger ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ errorToDisplay }}</badge>
+                </h6>
+                <a href="app/beneficiary"><button class="btn btn-primary" >Try Again</button></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<!-- footer-->
+<app-footer></app-footer>
+
+<!-- Beneficiary Details -->
+<!--  Transaction Modal-->
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Beneficiary Details</ng-template>
+
+    <ng-template #modalContent>
+        <div class="modal-content" style="border: 0px;">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-12 d-flex pl-0 pr-0 mb-3" style="border: solid 1px #d9d9d9;">
+                        <div class="col-md-12 pl-0">
+                            <div class="az-form-group" style="padding: 8px 15px !important;">
+                                <label class="forPreviewLabel"><i nz-icon nzType="user" nzTheme="outline" style="font-size: 20px;" class="mr-2"></i>Beneficiary Name</label>
+                                <h6 class="forPreview" style="margin-left: 29px;">{{ beneficiaryDetailId.beneficiary_name }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex pl-0 pr-0 mb-3" style="border: solid 1px #d9d9d9;">
+                        <div class="col-md-12 pl-0">
+                            <div class="az-form-group" style="padding: 8px 15px !important;">
+                                <label class="forPreviewLabel"><i nz-icon nzType="bank" nzTheme="outline" style="font-size: 20px;" class="mr-2"></i>Beneficiary Account Number</label>
+                                <h6 class="forPreview" style="margin-left: 29px;">{{ beneficiaryDetailId.beneficiary_account_number }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex pl-0 pr-0 mb-3" style="border: solid 1px #d9d9d9;">
+                        <div class="col-md-12 pl-0">
+                            <div class="az-form-group" style="padding: 8px 15px !important;">
+                                <label class="forPreviewLabel"><i nz-icon nzType="wallet" nzTheme="outline" style="font-size: 20px;" class="mr-2"></i>Wallet ID</label>
+                                <h6 class="forPreview" style="margin-left: 29px;">{{ beneficiaryDetailId.wallet_id }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 d-flex pl-0 pr-0 mb-3" style="border: solid 1px #d9d9d9;">
+                        <div class="col-md-12 pl-0">
+                            <div class="az-form-group" style="padding: 8px 15px !important;">
+                                <label class="forPreviewLabel"><i nz-icon nzType="branches" nzTheme="outline" style="font-size: 20px;" class="mr-2"></i>Beneficiary Type</label>
+                                <h6 class="forPreview" style="margin-left: 29px;">{{ beneficiaryDetailId.beneficiary_type }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+    </ng-template>
+</nz-modal>

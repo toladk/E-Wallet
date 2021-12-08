@@ -1,0 +1,7 @@
+{
+    "/v1/*": {
+        "target": "http://10.0.33.122:81/eWallet/api/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

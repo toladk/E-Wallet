@@ -1,0 +1,175 @@
+<div class="main-container">
+    <div class="container">
+        <h5 class="text-center mt-3 mb-2">
+            Fund Withdrawal !!!
+        </h5>
+        <p class="text-center mb-4">Withdraw from your wallet</p>
+
+
+        <!-- For Wallet Funding -->
+        <form [formGroup]="fundWithdrawalForm">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="subtitle mb-0">
+                        <div class="avatar avatar-40 bg-primary-light text-primary rounded"><span class="material-icons vm">account_balance_wallet</span></div>
+                        Fund wallet with card
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label" style="font-weight: 600;">Select Wallet</label>
+                                        <nz-select style="width: 100%;" formControlName="walletAccountNumber" nzShowSearch nzAllowClear nzPlaceHolder="Select Wallet No">
+                                            <nz-option *ngFor="let list of WalletArray" [nzValue]="list.value" [nzLabel]="list.name"></nz-option>
+                                        </nz-select>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Amount</label>
+                                        <input type="number" formControlName="amount" nz-input placeholder="Enter Amount" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Destination Account Number</label>
+                                        <input type="text" maxlength="10" formControlName="destinationAccountNumber" nz-input placeholder="Enter Account Number" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Destination Account Name</label>
+                                        <input type="text" formControlName="destinationAccountName" nz-input placeholder="Enter Account Name" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label" style="font-weight: 600;">Select Bank</label>
+                                        <nz-select style="width: 100%;" formControlName="destinationBankCode" nzShowSearch nzAllowClear nzPlaceHolder="Select Bank">
+                                            <nz-option *ngFor="let list of allBankList" [nzValue]="list.bankCode" [nzLabel]="list.bankName"></nz-option>
+                                        </nz-select>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="az-form-group mt-3">
+                                <nz-form-item style="margin-bottom: 9px !important;">
+                                    <nz-form-control>
+                                        <label class="form-label">Narration</label>
+                                        <input type="text" formControlName="narration" nz-input placeholder="Enter Narration" />
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12 col-md-6">
+                            <div class="form-group float-label active">
+                                <div class="bottom-right ">
+                                    <a class="btn btn-sm btn-link text-dark btn-40 rounded text-mute"><i class="material-icons">subtitles</i></a>
+                                </div>
+                                <input type="text" [(ngModel)]="reference" class="form-control" formControlName="transactionReference" readonly>
+                                <div *ngIf="f.transactionReference.touched && f.transactionReference.invalid" class="mt-1" style="color: red;">
+                                <div *ngIf="f.transactionReference.errors.required">Transaction Reference Number is required*.</div>
+                            </div>
+                                <label class="form-control-label">Transaction Refrence</label>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button nz-button nzBlock nzType="primary" [disabled]="fundWithdrawalForm.value.destinationBankCode === ''" (click)="fundWithdrawalCheck()" [nzLoading]="isLoadingBtn" style="border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;">Withdraw Fund</button>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- Success Message -->
+        <div class="row h-100" *ngIf="successMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-success-light text-success rounded-circle mb-3">
+                    <i class="material-icons display-4">check_circle</i>
+                </div>
+                <h2>Account Funded !!</h2>
+                <h6 class="text-secondary mb-3">Account {{ this.fundWithdrawalForm.value.destinationAccountNumber }} as been funded successfully</h6>
+                <!-- <p class="text-secondary"><b>Trx Reference:</b>
+                  <badge class="badge-success ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ successReference }}</badge>
+              </p> -->
+                <a href="app/fund-wallet"><button class="btn btn-success" >Make another transfer</button></a>
+            </div>
+        </div>
+
+        <!-- error Message -->
+        <div class="row h-100" *ngIf="errorMessage">
+            <div class="col-12 col-md-6 col-lg-4 align-self-center text-center mx-auto" style="margin-top: 50px; margin-bottom: 50px;">
+                <div class="icon icon-120 bg-danger-light text-danger rounded-circle mb-3">
+                    <i class="material-icons display-4">close</i>
+                </div>
+                <h2>Failed !!</h2>
+                <h6 class="text-secondary mb-3">Message:
+                    <badge class="badge-danger ml-2 pl-1 pr-1" style="border-radius: 5px;">{{ errorToDisplay }}</badge>
+                </h6>
+                <a href="app/fund-wallet"><button class="btn btn-primary" >Try Again</button></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+<!-- footer-->
+<app-footer></app-footer>
+
+
+<!--  Token Modal-->
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter" (nzOnCancel)="handleCancel()">
+    <ng-template #modalTitle>Enter Transaction Password</ng-template>
+
+    <ng-template #modalContent>
+        <form [formGroup]="fundWithdrawalForm">
+            <div class="modal-content">
+                <div class="col-12">
+                    <div class="form-group float-label active">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <input type="password" formControlName="transactionPassword" class="form-control mt-4 mb-2" placeholder="Enter Your Password">
+                            </div>
+                        </div>
+                        <label class="form-control-label mt-4 mb-2">Transaction Password</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+        <button nz-button nzType="primary" (click)="fundwithdrawalSubmit()" [nzLoading]="isConfirmLoading">Submit</button>
+    </ng-template>
+</nz-modal>
